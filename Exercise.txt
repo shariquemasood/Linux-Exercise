@@ -1,0 +1,66 @@
+1. mkdir -p exercise/dir1/dir2/dir3
+2. touch emptyFile1 emptyFile2
+3. echo hello world > file1.txt 
+4. find /etc -name passwd
+	cp -rf /etc/passwd passwd_copy
+	mv passwd_copy passwd_backup
+5. less passwd_backup
+	more passwd_backup
+	cat passwd_backup
+
+	Difference - ( both less and more command pages the file if the file is too large
+	to fit on screen ) with less command we can move backward and forward both
+	but with more command we can only go forward.
+	if file is too large then use of cat takes more time because it display the
+	whole content of file in one go.
+
+
+6. grep /bin/false passwd_backup | wc -l
+7. head -n 5 passwd_backup  > output
+8. sudo useradd test
+	sudo passwd test
+	grep test /etc/passwd or id test
+9. touch -t 07101825 emptyFile1 emptyFile2
+	explaination: month 07 date 10 time 18:25
+
+10. chmod 666 output
+	1.sudo chgrp test output
+		ls -l output
+		sudo chgrp sharique output       note. reverting the change
+	2.chmod 666 output
+		ls -l output 
+		chmod 664 output             note.reverting the change
+	3. sudo chown test output 
+		 
+
+	
+11. alias sharique='touch /tmp/aliastesting'
+	the above command is temporary if we want a permanent alias then 
+	we have to add above command into .bashrc file.
+
+12. vi .bashrc 
+	#in bashrc write below command
+	clear
+	echo "welcome"
+
+
+13. sudo apt-get install zip
+14. tar -cjvf tarball.tar.bz2 output passwd_backup
+	 tar -tf  tarball.tar.bz2
+
+	(the question does not mention that in which formate we have to compress these two file
+	so here by assuming i am compressing these in bzip2.)
+
+15. sudo scp tarball.tar.bz2  /home/test/
+16. ssh sharque@192.168.1.2 tar -xf tarball.tar.bz2
+
+17. wget https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png
+	mv 1200px-Tux.svg.png Desktop/
+
+18. useradd --help
+	command name followed by --help
+19. ln -s /etc/services /tmp/ports-info
+20. which xyz
+	Syntax: which <command name>
+
+
