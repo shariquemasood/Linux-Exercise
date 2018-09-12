@@ -5,6 +5,7 @@
 4. git rm --cached a.txt
 5. git commit -m "my first commit" a.txt
 6. git remote add origin git@github.com:shariquemasood/test.git
+7. git reset --hard
 8. git push origin master
 9. git clone git@github.com:shariquemasood/test.git
 10. git pull origin master
