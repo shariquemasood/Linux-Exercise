@@ -1,0 +1,58 @@
+1. this is just a basic insatallation
+	Git Setup https://confluence.atlassian.com/bitbucket/set-up-git-744723531.html
+2. git init
+3. git add a.txt
+4. git rm --cached a.txt
+5. git commit -m "my first commit" a.txt
+6. git remote add origin git@github.com:shariquemasood/test.git
+8. git push origin master
+9. git clone git@github.com:shariquemasood/test.git
+10. git pull origin master
+11. git diff --staged
+12. create a .gitignore file
+	add the file name to be ignore in .gitignore
+	eg file1.py or *.py(for all py extention file)
+	add .gitignore to index 
+	eg git add .gitignore
+	now commit the .gitignore file
+	create a file and then commit the file and then push changes to github to see result.
+
+
+13. git branch mybranch
+14. git push -u origin mybranch 
+15. git checkout b1
+	echo "hello" > a.txt
+	git add a.txt
+	git commit -m "first branch commit" a.txt
+    git checkout b2
+	echo "second hello" > a.txt
+	git add a.txt
+	git commit -m "second branch commit" a.txt
+
+16. git checkout master
+	 git merge second
+	 if conflict occur make changes equal in sam file in master and second
+	 branch then do commit and then merge the branch.
+
+17. git add file.txt
+	git stash
+	git stash list
+	git stash pop
+
+
+18. vim .bashrc
+
+color_prompt="yes"
+parse_git_branch() 
+{
+git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+if [ "$color_prompt" = yes ]; then
+PS1='\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
+else
+PS1='\u@\h:\W $(parse_git_branch)\$ '
+fi
+unset color_prompt force_color_prompt
+
+:wq
+
