@@ -1,5 +1,6 @@
 1. this is just a basic insatallation
 	Git Setup https://confluence.atlassian.com/bitbucket/set-up-git-744723531.html
+	sudo apt-get install git
 2. git init
 3. git add a.txt
 4. git rm --cached a.txt
