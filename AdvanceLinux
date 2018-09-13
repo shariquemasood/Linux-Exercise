@@ -1,0 +1,6 @@
+sudo crontab -e sharique
+45 23 * * 1 /usr/bin/echo "hello"
+by default dig gives the ip information of a website along with nameserver
+while traceroute show the route from ip network to hosts.
+
+telnet 8.8.8.8 22
