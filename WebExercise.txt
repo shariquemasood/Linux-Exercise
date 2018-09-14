@@ -43,8 +43,8 @@
 
 7. The Document root defines where is your wenbsite pages resides.
 
-8. 1.The SOAP (simple object access protocol) is an XML-based messaging protocol for information exchange amoung computers. while REST (Representational State Transfer) is a Architecture 
-       based web service in which everything is resource.
+8. 1.The SOAP (simple object access protocol) is an XML-based messaging protocol for information exchange amoung computers. 
+	while REST (Representational State Transfer) is a Architecture based web service in which everything is resource.
    2. SOAP can only work with XML format while REST works with different data format such as Plain text, HTML, XML, JSON, etc.
    3. SOAP require more bandwidth for its uses while REST does not need much bandwidth when
        requests are sent to the server.
@@ -57,15 +57,14 @@
 	200: (OK). It means, simply, that the request was received and understood and is being processed.
 
 	(Redirectional)
-	300: (Multiple Choices). It indicates that a resource has moved. The responce will also include a list of location from which user can 			    select.
+	300: (Multiple Choices). It indicates that a resource has moved. The responce will also include a list of location from 			which user can select.
 	301: (Moved Permanently). It tells that the resouce is permanenty moved to a new location.
-		    the responce will also include the latest location.
+		    	the responce will also include the latest location.
 	302: (Found). It tell that the resource is temporary moves to a new location. The responce
-		    will also tell the latest location . and it also say you can carry with the old location.
-	304: (Not Modified). It is sent in response to a request (for a document) that asked for the document only. If there is a change in 			    document then it relode the document
-		    else just reloade the document from cache.
+		         will also tell the latest location . and it also say you can carry with the old location.
+	304: (Not Modified). It is sent in response to a request (for a document) that asked for the document only. If there is a 			   change in document then it relode the document else just reloade the document from cache.
 
-	307: (Temporary Redirect). It indicates that is sent when a document is temporarily available at a different URL, which is also 		    returned.
+	307: (Temporary Redirect). It indicates that is sent when a document is temporarily available at a different URL, which 			 is also returned.
 
 	(Client Error)
 	400: (Bad Request). It indicates that the server did not understand the request due to bad syntax.
@@ -75,20 +74,9 @@
 	404: (Not Found). It indicates that the requested resource was not found at the URL given.
 	
 	(Server Error)
-	500: (internel Server Error). It indicates that the server encountered something it didn't expect and was unable to complete the 			    request.
+	500: (internel Server Error). It indicates that the server encountered something it didn't expect and was unable to 				complete the request.
 	503: (Service Unavailable). It indicates that the server was unable to complete the request due to a server overload.
-	550: (HTTP Version Not Supported). It indicated in the request is no supported. The response should indicate which HTTP versions are 			    supported.
-
-
-
-
-
-
-
-
-
-
-
+	550: (HTTP Version Not Supported). It indicated in the request is no supported. The response should indicate which HTTP 			versions are supported.
 
 
 
