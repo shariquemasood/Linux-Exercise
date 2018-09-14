@@ -30,8 +30,8 @@
 	1. we try to connect with a website secured wtith ssl. The browser request that the webserver identify itself.
 	2. The webserver sends the browser a copy of its ssl
 	certificate
-	3. The browser checks to see whether or not it truts the ssl certificate .If so , it send amessage to the webserver.				
-        4. The webserver sends back a digitally sogned acknowledge to start ssl encryption session.
+	3. The browser checks to see whether or not it truts the ssl certificate .If so , it send a message to the webserver.				
+        4. The webserver sends back a digitally signed acknowledge to start ssl encryption session.
 
 5. 1. Apache is web server only while nginx is web and proxy server both.
    2. Apache thread can handle ony one connection while nginx thread handle multiple connection.
