@@ -58,7 +58,10 @@
 11. sudo chgrp admin file1
     sudo chown test file2
 
-12. A sticky bit is a permission bit that is set on a directory that allows only the owner of the 	file within that directory (root has all the permission) to make chnages or delete  the 		file . No other user has the needed privileges to make changes or delete the file created 	by some other user the other user can only read.
+12. A sticky bit is a permission bit that is set on a directory that allows only the owner of the 
+	file within that directory (root has all the permission) to make chnages or delete  the 
+	file . No other user has the needed privileges to make changes or delete the file created
+	by some other user the other user can only read.
 
 13. sudo adduser linux
 	passwd linux
