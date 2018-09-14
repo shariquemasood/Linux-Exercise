@@ -39,7 +39,8 @@
    4. Apache works on multithreading approach while Nginx works on event driven model.
    5. Nginx is faster than Apache.
 
-6. with the help of Virtual Host we can run more than one web site on a single server(such as company1.example.com and company2.example.com). Virtual hosts can be "IP-based", meaning that you have a different IP address for every web site.
+6. with the help of Virtual Host we can run more than one web site on a single server(such as company1.example.com and 
+company2.example.com). Virtual hosts can be "IP-based", meaning that you have a different IP address for every web site.
 
 7. The Document root defines where is your wenbsite pages resides.
 
@@ -57,12 +58,17 @@
 	200: (OK). It means, simply, that the request was received and understood and is being processed.
 
 	(Redirectional)
-	300: (Multiple Choices). It indicates that a resource has moved. The responce will also include a list of location from which user can select.
-	301: (Moved Permanently). It tells that the resouce is permanenty moved to a new location. the responce will also include the latest location.
-	302: (Found). It tell that the resource is temporary moves to a new location. The responce will also tell the latest location . and it also say you can carry with the old location.
-	304: (Not Modified). It is sent in response to a request (for a document) that asked for the document only. If there is a   change in document then it relode the document else just reloade the document from cache.
+	300: (Multiple Choices). It indicates that a resource has moved. The responce will also include a list of location 
+	from which user can select.
+	301: (Moved Permanently). It tells that the resouce is permanenty moved to a new location. the responce will also 
+	include the latest location.
+	302: (Found). It tell that the resource is temporary moves to a new location. The responce will also tell the latest
+	location . and it also say you can carry with the old location.
+	304: (Not Modified). It is sent in response to a request (for a document) that asked for the document only. If there 
+	is a   change in document then it relode the document else just reloade the document from cache.
 
-	307: (Temporary Redirect). It indicates that is sent when a document is temporarily available at a different URL, while is also returned.
+	307: (Temporary Redirect). It indicates that is sent when a document is temporarily available at a different URL, 
+	while is also returned.
 
 	(Client Error)
 	400: (Bad Request). It indicates that the server did not understand the request due to bad syntax.
@@ -72,9 +78,11 @@
 	404: (Not Found). It indicates that the requested resource was not found at the URL given.
 	
 	(Server Error)
-	500: (internel Server Error). It indicates that the server encountered something it didn't expect and was unable to complete the request.
+	500: (internel Server Error). It indicates that the server encountered something it didn't expect and was unable to 
+	complete the request.
 	503: (Service Unavailable). It indicates that the server was unable to complete the request due to a server overload.
-	550: (HTTP Version Not Supported). It indicated in the request is no supported. The response should indicate which HTTP versions are supported.
+	550: (HTTP Version Not Supported). It indicated in the request is no supported. The response should indicate which HTTP 
+	versions are supported.
 
 
 
