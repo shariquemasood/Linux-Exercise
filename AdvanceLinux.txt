@@ -39,7 +39,7 @@
 	  5. Now mount the lv
 
 9. sudo apt-get install mdadm
-	create two partition(which act as a disk)
+	create two partition(which act as a disk or take to independent disk)
 	/dev/sda1 /dev/sda2
 
 	mdadm -E /dev/sda{1,2}
