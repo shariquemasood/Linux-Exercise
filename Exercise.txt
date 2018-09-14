@@ -52,7 +52,7 @@
 	so here by assuming i am compressing these in bzip2.)
 
 15. sudo scp tarball.tar.bz2  /home/test/
-16. ssh sharque@192.168.1.2 tar -xf tarball.tar.bz2
+16. ssh sharque@192.168.1.2 tar -xjf tarball.tar.bz2
 
 17. wget https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png
 	mv 1200px-Tux.svg.png Desktop/
