@@ -1,0 +1,89 @@
+1. the size of MBR is 512 bytes
+	and it store the address of grub loader
+
+2. update-rc.d apache2 defaults
+	syntax: update-rc.d servicetostart defaults
+
+3. init 6
+
+4. service cron restart
+
+5. create a partision then formate it with below command 
+	sudo mkfs.ext4 /dev/sdb4
+
+6. sudo mount /dev/sdb4 /mnt/partition1
+	if we want permanent mount then we have to make this entry to fstab file.
+
+
+7. LVM is a disk management approach 
+	that allows us to create, extend, 
+	reduce, delete or resize the volume 
+	groups or logical volumes.
+
+   RAID is either a software or a hardware 
+	technique to create data storage 
+	redundancy across multiple block 
+	devices based on required RAID levels.
+        By configuring RAID you are just providing 
+	an emergency substitute for the Primary disk.
+
+8. Steps: 1. create a physical volume(pv) by creating one or more partition from disk
+	     after that
+             pvcreate /dev/sda6 /dev/sda7
+	  2. create volume group(vg) from pv
+	     vgcreate vol_grp1 /dev/sda6 /dev/sda7
+	  3. create logical volume form vg
+	     lvcreate -l 20 -n logical_vol1  vol_grp1
+	  4. Now fomate the newly created lv
+	     mkfs.ext3 /dev/vol_grp1/logical_vol1
+	  5. Now mount the lv
+
+9. sudo apt-get install mdadm
+	create two partition(which act as a disk)
+	/dev/sda1 /dev/sda2
+
+	mdadm -E /dev/sda{1,2}
+	mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sda{1,2}
+	cat /proc/mdstat
+	mkfs.ext4 /dev/md0
+	mkdir /mnt/raid1
+	mount /dev/md0 /mnt/raid1/
+
+
+10. sudo fallocate -l 500M /swapfile
+    sudo mkswap /swapfile 
+    sudo swapon /swapfile
+    swapon -s
+
+11. sudo chgrp admin file1
+    sudo chown test file2
+
+12. A sticky bit is a permission bit that is set on a directory that allows only the owner of the 	file within that directory (root has all the permission) to make chnages or delete  the 		file . No other user has the needed privileges to make changes or delete the file created 	by some other user the other user can only read.
+
+13. sudo adduser linux
+	passwd linux
+    sudo usermod -g admin linux
+
+14. sudo passwd -l linux
+15. make below changes to /etc/sudoers file
+	linux ALL=(ALL) NOPASSWD:ALL
+
+16. sudo deluser --remove-home --backup-to /tmp
+	Then enter user name
+
+17. tr '[:lower:]' '[:upper:]' < us.txt > ls.txt
+
+18. sudo nice -n -1 servicename
+19. vi /etc/inetd.conf 
+20. telnet 10.1.210.199 22
+	netstat -pan | grep  :22
+21. sudo crontab -e sharique
+	45 23 * * 1 /usr/bin/echo "hello"
+22. by default dig gives the ip information of a website along with nameserver
+	while traceroute show the route from ip network to hosts.
+
+
+
+
+
+
