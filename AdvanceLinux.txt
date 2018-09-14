@@ -76,7 +76,7 @@
 
 17. tr '[:lower:]' '[:upper:]' < us.txt > ls.txt
 
-18. sudo nice -n -1 servicename
+18. sudo nice -n -1 vim
 19. vi /etc/inetd.conf 
 20. telnet 10.1.210.199 22
 	netstat -pan | grep  :22
