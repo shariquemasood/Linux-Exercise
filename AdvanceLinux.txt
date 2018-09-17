@@ -33,7 +33,7 @@
 	  2. create volume group(vg) from pv
 	     vgcreate vol_grp1 /dev/sda6 /dev/sda7
 	  3. create logical volume form vg
-	     lvcreate -l 20 -n logical_vol1  vol_grp1
+	     lvcreate -L 2G -n logical_vol1  vol_grp1                (creating lv of 2GB)
 	  4. Now fomate the newly created lv
 	     mkfs.ext3 /dev/vol_grp1/logical_vol1
 	  5. Now mount the lv
