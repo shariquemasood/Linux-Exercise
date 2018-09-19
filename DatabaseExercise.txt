@@ -1,0 +1,141 @@
+1. Storage engines are the component of MYSQL that handle the SQL operations (create, read, update data) for different table types. MYSQL comes with several databases engines and the InnoDB is default and most general-purpose storage engine.
+
+--To check which storage engine your server support.
+
+mysql> SHOW ENGINES;
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |
+| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables      | NO           | NO   | NO         |
+| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |
+| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |
+| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |
+| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |
+| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |
+| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |
+| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+9 rows in set (0.00 sec)
+
+--InnoDB: The default storage engine in MySQL 8.0. InnoDB is a transaction-safe (ACID compliant) storage engine for MySQL that has commit, rollback, and crash-recovery capabilities to protect user data.It is the only engine which provides foreign key referential integrity constraint. InnoBD is row-level locking.
+ACID (Atomicity, Consistency, Isolation, Durability)
+
+--MyISAM: It is the original storage engine. It is a fast storage engine. It does not support transactions. MyISAM provides table-level locking. It is used mostly in Web and data warehousing. 
+
+--MEMORY: It creates tables in memory. It is the fastest engine. It provides table-level locking. It does not support transactions. Memory storage engine is ideal for creating temporary tables or quick lookups. The data is lost when the database is restarted.
+
+--CSV: Its tables are really text files with comma-separated values. It provides great flexibility because data in this format is easily integrated into other applications. 
+
+--Archive: These compact, unindexed tables are intended for storing and retrieving large amounts of seldom-referenced historical, archived, or security audit information. 
+
+--MRG_MYISAM: Enables a MySQL DBA or developer to logically group a series of identical MyISAM tables and reference them as one object. Good for VLDB environments such as data warehousing. 
+
+--FEDERATED: Offers the ability to link separate MySQL servers to create one logical database from many physical servers. Very good for distributed or data mart environments. 
+
+--BLACKHOLE: It accepts but does not store data. Retrievals always return an empty set. The functionality can be used in distributed database design where data is automatically replicated, but not stored locally. This storage engine can be used to perform performance tests or other testing.
+
+
+2. --PostgreSQL is more densely featured database system. It is described as an open source version of Oracle.
+     while MySQL is known for its fast speed but it is less featured than PostgreSQL.
+   --PostgreSQL is a unified database server having a single storage engine.
+     while MySQL has a multi-layer structure having a set of storage engines.
+   --PostgreSQL is generally used on large and complex operations. It is more reliable on them.
+     while MySQL is generally used on simple operations.
+
+3. if you want a feature rich database then make use of PostgreSql. MySQL works best for online transactions, and PostgreSQL works best for append only, analytical processes such as data warehousing. So it totally depend on the project requiremnet and future perspective.
+  
+4. Horizontal scaling means that you scale by adding more machines into your pool of resource. Horizontal scaling can be done with a variety of configurations: Active-Passive, Master-Slave, Cluster, or Sharding.
+
+5.Disadvantages of fault tolerance
+
+	--Cost (increase in cost)
+	--Test dificulty 
+	--Reduce the priority of fault correction (having the fault tolerant system is likely to reduce importance of repairing the fault)	
+	--Interference with fault detection in the same component	
+
+6. Database replication is a service for shipping changes to your database, of a copy of your database server or on another server. If your primary database get crupted you can retrive the information form replicated database. It is useful in improving the availability of data. 
+--for speeding up your application
+--High availability of data 
+--Faster execution of Queries
+
+when you want above benefits then make use of master slave replication.
+
+--CONFIGURE MASTER SLAVE REPLICATION MYSQL (Here we are taking two machine withe Different Ip address)
+Maschine-1(Master 192.168.1.1)
+Steps:
+	1. Install mysql server
+		#sudo apt-get install mysql-server
+
+	2. Configure mysql i.e my.cnf
+		#sudo vim /etc/my.cnf
+	
+	Add the following entries under [mysqld]
+	server-id = 1
+	binlog-do-db=sharique
+	relay-log = /var/lib/mysql/mysql-relay-bin
+	relay-log-index = /var/lib/mysql/mysql-relay-bin.index
+	log-error = /var/lib/mysql/mysql.err
+	master-info-file = /var/lib/mysql/mysql-master.info
+	relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
+	log-bin = /var/lib/mysql/mysql-bin
+
+	ps. sharique is the database name you want to replicate
+	
+	3. Restart MySql service
+		#sudo service mysql restart
+
+	4. Login into MySQL as root user and create the slave user and grant privileges for replication
+		#mysql -u root -p
+		mysql> GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'your_password';
+		mysql> FLUSH PRIVILEGES;
+		mysql> FLUSH TABLES WITH READ LOCK;
+		mysql> SHOW MASTERSTATUS;         Note: Copy the file and location id we need it in slave configuration
+		mysql> quit;
+		
+		#mysqldump -u root -p --all-databases --master-data > /root/dbdump.db
+		mysql> UNLOCK TABLES;
+		mysql> quit;
+	4. Copy the dumpdata to your slave machine
+		#scp /root/dbdump.db root@192.168.1.2:/root/
+
+Machine-2(Slave 192.168.1.2)
+Steps:
+	1. Install mysql server
+		#sudo apt-get install mysql-server
+	
+	2. Configure mysql i3. my.cnf
+		#sudo vim /etc/my.cnf
+	
+	Add the following entries under [mysqld]
+	server-id = 2
+	master-host=192.168.1.1
+	master-connect-retry=60
+	master-user=slave_user
+	master-password=yourpassword
+	replicate-do-db=sharique
+	relay-log = /var/lib/mysql/mysql-relay-bin
+	relay-log-index = /var/lib/mysql/mysql-relay-bin.index
+	log-error = /var/lib/mysql/mysql.err
+	master-info-file = /var/lib/mysql/mysql-master.info
+	relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
+	log-bin = /var/lib/mysql/mysql-bin
+	
+	3. Now import the dumpdata and then restart mysql
+		#mysql -u root -p < /root/dbdump.db
+		#sudo service mysql restart
+
+	4. Login into MySQL as root user and stop the slave. Then tell the slave to where to look for Master log file.
+		#mysql -u root -p
+		mysql> slave stop;
+		mysql> CHANGE MASTER TO MASTER_HOST='192.168.1.1', MASTER_USER='slave_user', MASTER_PASSWORD='yourpassword', MASTER_LOG_FILE='masterfileid', MASTER_LOG_POS=masterlocationid;
+		mysql> slave start;
+		mysql> show slave status\G
+
+
+7. Databases can store tremendous amounts of information, petabytes of information. Specific bits of data are accessed by queries written in a particular interface language, such as SQL. Database optimization involves maximizing the speed and efficiency with which data is retrieved. 
+Database tuning aims to maximize use of system resources to perform work as efficiently and rapidly as possible.
+
+
+
+
