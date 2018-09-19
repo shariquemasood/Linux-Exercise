@@ -96,7 +96,7 @@ Steps:
 		#mysqldump -u root -p --all-databases --master-data > /root/dbdump.db
 		mysql> UNLOCK TABLES;
 		mysql> quit;
-	4. Copy the dumpdata to your slave machine
+	5. Copy the dumpdata to your slave machine
 		#scp /root/dbdump.db root@192.168.1.2:/root/
 
 Machine-2(Slave 192.168.1.2)
