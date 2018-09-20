@@ -1,5 +1,6 @@
 1. sudo apt-get install mysql-server-5.7 mysql-client-5.7 
-2. sudo mysql_secure_installation
+2. The above installation ask for password if not asked then run below command and follow the onsceen steps
+	#sudo mysql_secure_installation
 3. Go to the mysql configuration file
 	$vim /etc/mysql/mysql.conf.d/mysqld.cnf 
    in [mysqld]
