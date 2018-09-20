@@ -6,7 +6,7 @@
    add
 	bind-address            = 127.0.0.1
 
-4. Go ti the mysql configuration file
+4. Go to the mysql configuration file
 	$vim /etc/mysql/mysql.conf.d/mysqld.cnf
    Now change the location of error log
 	log_error = /tmp/error.log
