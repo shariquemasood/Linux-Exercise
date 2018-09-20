@@ -67,8 +67,8 @@ Steps:
 	1. Install mysql server
 		#sudo apt-get install mysql-server
 
-	2. Configure mysql i.e my.cnf
-		#sudo vim /etc/my.cnf
+	2. Configure mysql i.e mysqld.cnf
+		#sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 	
 	Add the following entries under [mysqld]
 	server-id = 1
@@ -104,8 +104,8 @@ Steps:
 	1. Install mysql server
 		#sudo apt-get install mysql-server
 	
-	2. Configure mysql i3. my.cnf
-		#sudo vim /etc/my.cnf
+	2. Configure mysql i3. mysqld.cnf
+		#sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 	
 	Add the following entries under [mysqld]
 	server-id = 2
