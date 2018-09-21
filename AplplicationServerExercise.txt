@@ -1,6 +1,5 @@
 1. Web Server is designed to serve HTTP Content. while Application Server can also serve HTTP Content but is not limited to just
-HTTP. It can be provided other protocol support such as RMI/RPC.
-
+   HTTP. It can be provided other protocol support such as RMI/RPC.
    The main purpose of a web server is to make the static content accessible for the users to view on the web browsers. The job
    of an application server is to host and expose business logic applications and processes using several different protocols. It
    works in conjunction with the web server.
@@ -195,7 +194,7 @@ if [ ! -r $TOMCAT_ARCHIVE ]; then
 	echo "If YES,  check your internet connection and try again." 1>&2
 	echo "You may also download $TOMCAT_ARCHIVE and place it in this folder." 1>&2
 	exit 1
-else;
+else
 	echo "Your $TOMCAT is Downloaded"
 fi
 
