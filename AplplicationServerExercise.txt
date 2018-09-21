@@ -1,9 +1,9 @@
-1. Web Server is designed to serve HTTP Content. while Application Server can also serve HTTP Content but is not limited to just HTTP. It can
-   be provided other protocol support such as RMI/RPC.
+1. Web Server is designed to serve HTTP Content. while Application Server can also serve HTTP Content but is not limited to just
+HTTP. It can be provided other protocol support such as RMI/RPC.
 
-   The main purpose of a web server is to make the static content accessible for the users to view on the web browsers. The job of an
-   application server is to host and expose business logic applications and processes using several different protocols. It works in
-   conjunction with the web server.
+   The main purpose of a web server is to make the static content accessible for the users to view on the web browsers. The job
+   of an application server is to host and expose business logic applications and processes using several different protocols. It
+   works in conjunction with the web server.
 
 2.Application Server
 	-- Oracle WebLogic
@@ -17,11 +17,15 @@
 	-- Lighttpd
 	-- Microsoft IIS
 
-3. Java Servlets are programs that run on a Web or Application server and act as a middle layer between a requests coming from a Web browser or other HTTP client and databases or applications on the HTTP server.Since a servlet is integrated with the Java language, it also possesses all the Java features such as high portability, platform independence, security and Java database connectivity. 
+3. Java Servlets are programs that run on a Web or Application server and act as a middle layer between a requests coming from a
+Web browser or other HTTP client and databases or applications on the HTTP server.Since a servlet is integrated with the Java
+language, it also possesses all the Java features such as high portability, platform independence, security and Java database
+connectivity. 
 
 4. Tomcat Directory Structure
 	
-	/bin -- Startup/shutdown scripts for tomcat and also consists of JAR files with classes required to control tomcat server.
+	/bin -- Startup/shutdown scripts for tomcat and also consists of JAR files with classes required to control tomcat
+	        server.
 	/conf -- Configuration files, including modules.xml, server.xml, and a number of apps-<name>.xml.
 	/lib -- Jar files that are used for starting and stopping Tomcat.
 	/logs -- This is where Tomcat places its log files by default.
