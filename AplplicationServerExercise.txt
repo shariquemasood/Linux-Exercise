@@ -1,0 +1,209 @@
+1. Web Server is designed to serve HTTP Content. while Application Server can also serve HTTP Content but is not limited to just HTTP. It can
+   be provided other protocol support such as RMI/RPC.
+
+   The main purpose of a web server is to make the static content accessible for the users to view on the web browsers. The job of an
+   application server is to host and expose business logic applications and processes using several different protocols. It works in
+   conjunction with the web server.
+
+2.Application Server
+	-- Oracle WebLogic
+	-- Tomcat
+	-- WebSphere Application Server
+	-- Oracle GlassFish Server
+	-- Red Hat JBoss Enterprise Application Platform
+  Web Server
+	-- Apache http Server
+	-- Nginx
+	-- Lighttpd
+	-- Microsoft IIS
+
+3. Java Servlets are programs that run on a Web or Application server and act as a middle layer between a requests coming from a Web browser or other HTTP client and databases or applications on the HTTP server.Since a servlet is integrated with the Java language, it also possesses all the Java features such as high portability, platform independence, security and Java database connectivity. 
+
+4. Tomcat Directory Structure
+	
+	/bin -- Startup/shutdown scripts for tomcat and also consists of JAR files with classes required to control tomcat server.
+	/conf -- Configuration files, including modules.xml, server.xml, and a number of apps-<name>.xml.
+	/lib -- Jar files that are used for starting and stopping Tomcat.
+	/logs -- This is where Tomcat places its log files by default.
+	/temp -- Temporary File Storage.
+	/webapps -- Sample web applications. Any .war files placed here will be automatically expanded.
+ 	/work -- Tomcat`s working directory where Tomcat places all servlets that are generated from JSPs.
+	/classes -- Any class that you add to this directory will find its place in Tomcat's classpath. 
+
+5. #vim /opt/tomcat/conf/server.xml
+	--Here change----
+
+	<Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+	--change connector port to any port you want eg. 8082------
+	
+	<Connector port="8082" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+	
+	Save and exit.
+	Go to browser
+	type http://http://127.0.0.1:8082/
+
+6. Installing Tomcat
+
+   #wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
+   #tar xvzf apache-tomcat-8.5.34.tar.gz 
+   #sudo mv apache-tomcat-8.5.34 /opt/tomcat
+
+   --Run tomcat by following command
+	#$CATALINA_HOME/bin/startup.sh 
+
+   Instaling Nginx
+   
+   #sudo apt-get install nginx
+   
+   --Now go to /etc/nginx/conf
+	create a tomcat-proxy-pass.conf file and add following line
+	
+	server {
+  		listen 80;
+  		server_name tomcatproxy.com;
+ 
+      location / {
+    		proxy_pass http://127.0.0.1:8081/;
+   		}
+	}
+
+Note: Here tomcat is running on port 8081 and nginx is runnning on port 80
+
+    --Now open /etc/nginx/nginx.conf
+	and comment the following line
+		#include /etc/nginx/sites-enabled/*;
+	save and exit
+    --Now open web browser type http:localhost 
+	now its show tomcat homapage
+
+-----------Additional Exercise-----------------------------------------------------------------------------------------------------------------
+
+
+1. #wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
+   #tar xvzf apache-tomcat-8.5.34.tar.gz 
+   #sudo mv apache-tomcat-8.5.34 /opt/tomcat
+
+2. #sudo apt-get install openjdk-8-jdk
+	here export the enviroment variable to .bashrc file
+	#vim .bashrc	
+	add--
+		export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+		export CATALINA_HOME=/opt/tomcat
+
+
+3. Create two Directories named Tomcat1 and Tomcat2
+ 
+	--Extract the tomcat tar file and copy to Tomcat1 and tomcat2
+   On Tomcat1
+	-- Open the file conf/server.xml
+	   #vim conf/server.xml
+		
+	leave server port as it is eg 8005 and leave the connector port as it is eg 8080 dont edit anything here
+
+   On Tomcat2
+	-- open the file conf/server.xml
+	    #vim conf/server.xml
+
+	Here change the server port to 8055 and coonnector port to 9090 
+	save and exit
+
+   Now open the web browser and open localhost:8080 in tab1 and localhost:9090 in tab2.
+   here both the tomcat instances are running.
+
+4. Go to Tomcat1/conf/server.xml
+	here change the connector port to 8080
+	save and exit
+   Now go to Tomcat2/cnf/server.xml
+	here change the connector port to 9090 and also change the server port to 8055
+	save and exit
+
+5.For Instance 1-----
+ 
+	Create a Directory hello inside Tomcat1/webapps/
+	in Directory hello create a index.html page with below content
+		
+		<html>
+		<head>
+		<title>"Hello, World" Application</title>
+		</head>
+		<h1>"Hello, World" Application This is First Tomcat Instance</h1>
+		<p>This is the home page for a sample application used to illustrate the
+		source directory organization of a web application utilizing the principles
+		outlined in the Application Developer's Guide.
+		<p>This is working Instance 1
+		</body>
+		</html>
+
+   Save it and go to browser and run localhots:8080/hello
+
+  For Instance 2-----
+
+	Create a Directory hello inside Tomcat2/webapps/
+	in Directory hello create a index.html page with below content
+		
+		<html>
+		<head>
+		<title>"Hello, World" Application</title>
+		</head>
+		<h1>"Hello, World" Application This is Second Tomcat Instance</h1>
+		<p>This is the home page for a sample application used to illustrate the
+		source directory organization of a web application utilizing the principles
+		outlined in the Application Developer's Guide.
+		<p>This is working Instance 2
+		</body>
+		</html>
+
+   Save it and go to browser and run localhots:9090/hello
+
+6.  --Go to /etc/nginx/conf
+	create a tomcat1-proxy-pass.conf file and add following line
+	
+	server {
+  		listen 80;
+  		server_name tomcatproxy.com;
+ 
+      location / {
+    		proxy_pass http://127.0.0.1:8080/hello/;
+   		}
+	}
+
+Note: Here tomcat first instance is running on port 8080 and nginx is runnning on port 80
+
+
+7.Create a Bash Script named TomcatInstall.sh
+	Add the below lines
+
+#!/bin/bash
+
+echo "Your Tomcat is Start Downloading"
+sudo wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
+TOMCAT=apache-tomcat-8.5.34
+TOMCAT_ARCHIVE=$TOMCAT.tar.gz
+
+if [ ! -r $TOMCAT_ARCHIVE ]; then
+	echo "Tomcat could not be downloaded." 1>&2
+	echo "Verify that wget is installed." 1>&2
+	echo "If YES,  check your internet connection and try again." 1>&2
+	echo "You may also download $TOMCAT_ARCHIVE and place it in this folder." 1>&2
+	exit 1
+else;
+	echo "Your $TOMCAT is Downloaded"
+fi
+
+#This is your Tomcat Installation Directory
+sudo mkdir /opt/tomcat
+
+sudo tar xvzf $TOMCAT_ARCHIVE
+sudo r -rf $TOMCAT_ARCHIVE
+sudo mv $TOMCAT  /opt/tomcat
+echo "Your Tomcat is Installed"
+echo "For Running your Tomcat Go to Directory /opt/tomcat/bin"
+echo "Then Run the startup.sh"
+
+
+
