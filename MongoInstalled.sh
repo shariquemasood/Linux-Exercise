@@ -10,4 +10,4 @@ echo "Downloading MongoDb"
 sudo apt-get install -y mongodb-org
 
 echo "Starting MongoDB service"
-sudo systemctl mongod start
+sudo systemctl start mongod
