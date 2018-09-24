@@ -7,7 +7,7 @@ echo "Reloading local package database."
 sudo apt-get update
 
 echo "Downloading MongoDb"
-sudo apt-get install mongodb-org
+sudo apt-get install -y mongodb-org
 
 echo "Starting MongoDB service"
 sudo systemctl mongod start
