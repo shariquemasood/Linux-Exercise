@@ -1,0 +1,109 @@
+1. First Add the MongoDB Repository
+	#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+   Issue the following command to create a list file for MongoDB.
+	#echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt
+         sources.list.d/mongodb-org-4.0.list
+    
+   Reload local package database.
+	#sudo apt-get update
+
+   Install the MongoDB package.
+	#sudo apt-get install mongodb-org
+
+2. Goto mongo shell then then type
+	use student;
+
+3.  Insert operation : 5 students data (Name, Contact, City, Roll No, Branch).
+
+>db.StudentData.insert({ "Name":"Rahul", "Contact":8765434568,"City":"New Delhi","Roll No":12,"Branch":"Mechanical"})
+WriteResult({ "nInserted" : 1 })
+
+> db.StudentData.insert({ "Name":"Ravi", "Contact":8735434568,"City":"New Delhi","Roll No":132,"Branch":"Mechanical"})
+WriteResult({ "nInserted" : 1 })
+
+> db.StudentData.insert({ "Name":"Anupam", "Contact":1234567890,"City":"Jaipur","Roll No":13,"Branch":"Civil"})
+WriteResult({ "nInserted" : 1 })
+
+> db.StudentData.insert({ "Name":"Hitesh", "Contact":0987654321,"City":"Jaipur","Roll No":19,"Branch":"Ece"})
+WriteResult({ "nInserted" : 1 })
+
+> db.StudentData.insert({ "Name":"Sharique", "Contact":87696542738,"City":"New Delhi","Roll No":37,"Branch":"Cse"})
+WriteResult({ "nInserted" : 1 })
+
+
+4. Read operation : All the students belong to a particular city
+ 
+>db.StudentData.find({City:"Jaipur"});
+
+5. Update operation : Update the branch of all the students to CSE
+
+> db.StudentData.update({},{$set:{Branch:"CSE"}},{multi:true});
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 4 })
+
+6. #mongodump --db test --collection StudentData
+
+7.> db.StudentData.remove({"Roll No":37})
+> db.StudentData.remove({"Roll No":19})
+
+8. >db.dropDatabase();
+
+9. #mongorestore dump
+
+Note: Here dump is the directory where we have taken the mongoDbdump.
+
+10
+>db.createuser(
+... {
+...   user:"sharique",
+...   pwd: "ttn",
+...   roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+... }
+... )
+
+Not go to file 
+	#vim /etc/mongod.conf
+	Add Below line
+	security:
+    		authorization: "enabled"
+
+#sudo mongo --port 27017 -u "sharique" -p "ttn" --authenticationDatabase "admin"
+
+11. Download the required version in tar formate form here
+	https://www.mongodb.org/dl/linux/x86_64-ubuntu1604?_ga=2.184587497.1557332242.1537772378-614964877.1537772377
+	
+    Extract the tar into /opt/mongodb
+    opne mongodb configuration file if file is not there then create a new file named mongodb.conf
+	#vim /etc/mongodb.conf
+	net:
+  	    port: 27017
+  	    bindIp: 127.0.0.1
+
+	here change the port to 27009 save and exit
+   
+  or
+	#mongo --port 27009
+
+
+
+     
+12. vim MongoInstalled.sh
+
+#!/bin/bash
+echo "Adding the MongoDB Repository"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt sources.list.d/mongodb-org-4.0.list
+
+echo "Reloading local package database."
+sudo apt-get update
+
+echo "Downloading MongoDb"
+sudo apt-get install mongodb-org
+
+echo "Starting MongoDB service"
+sudo systemctl mongod start
+
+
+
+
+
