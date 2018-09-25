@@ -6,7 +6,6 @@
 
 2.Application Server
 	-- Oracle WebLogic
-	-- Tomcat
 	-- WebSphere Application Server
 	-- Oracle GlassFish Server
 	-- Red Hat JBoss Enterprise Application Platform
